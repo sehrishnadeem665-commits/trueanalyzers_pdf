@@ -59,7 +59,12 @@ export function ContactForm() {
     setServerError(null);
     setSubmitting(true);
     try {
-      const { error } = await supabase.from('contact_submissions').insert({
+      if (!supabase) {
+        throw new Error('Supabase is not configured. Please set NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY.');
+      }
+
+      const sb: any = supabase;
+      const { error } = await sb.from('contact_submissions').insert({
         name: values.name.trim(),
         email: values.email.trim(),
         subject: values.subject.trim(),
