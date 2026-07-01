@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14% 12%;
+    --primary: 24 95% 53%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 30 100% 97%;
+    --secondary-foreground: 24 80% 25%;
+    --muted: 30 30% 96%;
+    --muted-foreground: 20 10% 45%;
+    --accent: 28 100% 96%;
+    --accent-foreground: 24 80% 25%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 30 20% 90%;
+    --input: 30 20% 90%;
+    --ring: 24 95% 53%;
+    --radius: 0.75rem;
+
+    --brand-50: 48 100% 96%;
+    --brand-100: 45 100% 92%;
+    --brand-200: 40 100% 85%;
+    --brand-300: 33 100% 75%;
+    --brand-400: 28 96% 64%;
+    --brand-500: 24 95% 53%;
+    --brand-600: 20 90% 48%;
+    --brand-700: 17 80% 42%;
+    --brand-800: 16 70% 36%;
+    --brand-900: 15 60% 30%;
+
+    --chart-1: 24 95% 53%;
+    --chart-2: 20 90% 48%;
+    --chart-3: 33 100% 75%;
+    --chart-4: 40 100% 70%;
+    --chart-5: 45 100% 85%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background-color: hsl(var(--brand-500) / 0.25);
+    color: hsl(var(--brand-800));
+  }
+}
+
+@layer components {
+  .container-px {
+    @apply px-5 sm:px-6 lg:px-8;
+  }
+  .container-page {
+    @apply mx-auto w-full max-w-7xl container-px;
+  }
+  .text-gradient-brand {
+    @apply bg-gradient-to-br from-brand-500 via-brand-600 to-brand-700 bg-clip-text text-transparent;
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--brand-200) / 0.35) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--brand-200) / 0.35) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+  .bg-dots {
+    background-image: radial-gradient(hsl(var(--brand-300) / 0.5) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .glass-card {
+    @apply border border-white/60 bg-white/70 backdrop-blur-xl;
+  }
+  .shadow-soft {
+    box-shadow:
+      0 1px 2px hsl(20 80% 30% / 0.04),
+      0 8px 24px hsl(20 80% 30% / 0.06);
+  }
+  .shadow-brand {
+    box-shadow:
+      0 10px 30px -10px hsl(24 95% 53% / 0.45),
+      0 4px 12px -4px hsl(24 95% 53% / 0.25);
+  }
+  .shadow-card-hover {
+    box-shadow:
+      0 1px 2px hsl(20 80% 30% / 0.05),
+      0 18px 40px -12px hsl(20 80% 30% / 0.18);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out both;
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-marquee {
+    animation: marquee 32s linear infinite;
+  }
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
